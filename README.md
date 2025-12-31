@@ -93,6 +93,36 @@ Password: `root` hoặc `ubuntu`
 - Để có GUI, cần cài desktop environment sau khi vào VM (mất 10-20 phút)
 - VM files được lưu tại `~/vm` (hoặc `~/vm-gui` cho GUI mode)
 
+## Chạy file .exe trên Ubuntu (Wine)
+
+Để chạy các file Windows (.exe) trên Ubuntu VM:
+
+### Cài đặt Wine tự động
+
+```bash
+# Copy script install-wine.sh vào VM (hoặc tạo trực tiếp trong VM)
+bash install-wine.sh
+```
+
+### Cài đặt thủ công
+
+```bash
+sudo apt update
+sudo apt install -y wine64 wine32 winetricks
+winecfg  # Cấu hình Wine (có thể đóng cửa sổ)
+```
+
+### Sử dụng
+
+```bash
+# Chạy file .exe
+wine yourfile.exe
+
+# Hoặc click đúp vào file .exe trong file manager
+```
+
+**Lưu ý:** Không phải tất cả .exe đều chạy được trên Wine. Một số ứng dụng có thể cần thêm cấu hình.
+
 ## Troubleshooting
 
 **Login incorrect?**
@@ -104,4 +134,9 @@ Password: `root` hoặc `ubuntu`
 - Đảm bảo đã set `GUI_MODE=true`
 - Đã cài desktop environment trong VM chưa?
 - Thử khởi động lại VM
+
+**File .exe không chạy?**
+- Đảm bảo đã cài Wine: `sudo apt install -y wine64 wine32`
+- Thử cài thêm components: `winetricks vcrun2019 corefonts`
+- Kiểm tra log: `wine yourfile.exe 2>&1 | less`
 
