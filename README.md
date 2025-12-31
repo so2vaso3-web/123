@@ -140,3 +140,42 @@ wine yourfile.exe
 - Thử cài thêm components: `winetricks vcrun2019 corefonts`
 - Kiểm tra log: `wine yourfile.exe 2>&1 | less`
 
+## VPS FREE cho Windows
+
+Script tạo VPS miễn phí với Docker + noVNC (tương đương https://github.com/phuonganhnguyen1842-ctrl/vps.git)
+
+### Yêu cầu
+- Windows 10/11
+- Docker Desktop (tải tại: https://www.docker.com/products/docker-desktop)
+
+### Cách sử dụng
+
+**Phiên bản Local (chỉ truy cập từ máy local):**
+```powershell
+.\vps-windows.ps1
+```
+
+**Phiên bản với Cloudflare Tunnel (truy cập từ bất kỳ đâu):**
+```powershell
+.\vps-windows-cloudflare.ps1
+```
+
+### Thông tin đăng nhập
+- **URL**: http://localhost:10000 (local) hoặc Cloudflare URL (nếu dùng cloudflare version)
+- **Mật khẩu VNC**: `12345678`
+
+### Lệnh hữu ích
+```powershell
+# Xem container đang chạy
+docker ps
+
+# Dừng VPS
+docker stop ubuntu-novnc
+
+# Khởi động lại VPS
+docker start ubuntu-novnc
+
+# Xóa VPS
+docker rm -f ubuntu-novnc
+```
+
